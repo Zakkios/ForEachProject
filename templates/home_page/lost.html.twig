@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Excuses generator{% endblock %}
+{% block body %}
+
+<p>I'm lost</p>
+<img src="https://media.tenor.com/bygKq3UlHYUAAAAd/what-nick-young.gif" alt="">
+<div id="timer">5</div>
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    window.onload = () => {
+        let timer = document.getElementById("timer");
+        setInterval(() => {
+            timer.innerHTML--
+        }, 1000)
+
+        setTimeout(() => {
+            window.location.href = "{{ path('app_home_page') }}";
+        }, 5100)
+    }
+
+</script>
+{% endblock %}
+
+{% endblock %}

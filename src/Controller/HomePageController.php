@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Excuse;
 use App\Repository\ExcuseRepository;
 use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +18,7 @@ class HomePageController extends AbstractController
 
         return $this->render('home_page/index.html.twig', [
             'excuses' => $excuses,
-            'tag' => $tags
+            'tags' => $tags
         ]);
     }
 }
