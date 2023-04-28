@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Excuses generator{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper {
+        margin: 1em auto;
+        max-width: 800px;
+        width: 95%;
+        font: 18px/1.5 sans-serif;
+    }
+
+    .example-wrapper code {
+        background: #F5F5F5;
+        padding: 2px 6px;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello ! ✅</h1>
+
+    <button id="btn">Générer une excuse</button>
+    <div id="excuse_message">
+        {% for tag in tag %}
+        {{ tag.type}}<br>
+        {% endfor %}
+    </div>
+</div>
+<script>
+    let excuses = JSON.parse('{{ excuses|json_encode|raw }}')
+    console.log(excuses)
+    max = parseInt("{{ excuses | length +1}}")
+
+    const btn = document.getElementById("btn");
+    const excuse_message = document.getElementById("excuse_message");
+
+    btn.addEventListener("click", () => {
+        let number = Math.ceil(Math.random() * max)
+        excuse_message.innerHTML = excuses[number].message
+    })
+</script>
+{% endblock %}
