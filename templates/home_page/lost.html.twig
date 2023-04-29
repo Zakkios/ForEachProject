@@ -3,9 +3,20 @@
 {% block title %}Excuses generator{% endblock %}
 {% block body %}
 
-<p>I'm lost</p>
-<img src="https://media.tenor.com/bygKq3UlHYUAAAAd/what-nick-young.gif" alt="">
-<div id="timer">5</div>
+<p></p>
+
+
+<div class="container min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <p class="code" style="text-align: center;">
+            I'm lost <br>
+            Redirection dans : <span id="timer">5</span>
+        </p>
+        <div>
+            <img src="https://media.tenor.com/bygKq3UlHYUAAAAd/what-nick-young.gif" alt="" style="border-radius: 10px;">
+        </div>
+    </div>
+</div>
 
 {% block javascripts %}
 {{ parent() }}

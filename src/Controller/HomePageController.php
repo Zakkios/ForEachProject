@@ -25,10 +25,14 @@ class HomePageController extends AbstractController
     #[Route('/{slug}', name: 'app_http_code')]
     public function httpCode(ExcuseRepository $excuseRepository, string $slug): Response
     {
-        $excuse = $excuseRepository->findOneBy(['http_code' => $slug]);
+        if ($slug != "lost") {
+            $excuse = $excuseRepository->findOneBy(['http_code' => $slug]);
 
-        return $this->render('home_page/slug.html.twig', [
-            'excuse' => $excuse
-        ]);
+            return $this->render('home_page/slug.html.twig', [
+                'excuse' => $excuse
+            ]);
+        } else {
+            return $this->render('home_page/lost.html.twig', []);
+        }
     }
 }
