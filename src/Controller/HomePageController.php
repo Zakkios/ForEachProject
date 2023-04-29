@@ -6,6 +6,7 @@ use App\Repository\ExcuseRepository;
 use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomePageController extends AbstractController
@@ -25,14 +26,17 @@ class HomePageController extends AbstractController
     #[Route('/{slug}', name: 'app_http_code')]
     public function httpCode(ExcuseRepository $excuseRepository, string $slug): Response
     {
-        if ($slug != "lost") {
+        if ($slug == "lost") {
+            return $this->render('home_page/lost.html.twig', []);
+        } else {
             $excuse = $excuseRepository->findOneBy(['http_code' => $slug]);
+            if ($excuse == null) {
+                throw new NotFoundHttpException();
+            }
 
             return $this->render('home_page/slug.html.twig', [
                 'excuse' => $excuse
             ]);
-        } else {
-            return $this->render('home_page/lost.html.twig', []);
         }
     }
 }
