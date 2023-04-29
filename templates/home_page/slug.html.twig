@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Excuses generator{% endblock %}
+{% block body %}
+
+<div class="container min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <div>
+            <button class="btn btn-primary" id="btn">Revenir a la page d'acceuil</button>
+        </div>
+        <p class="code" id="excuse_message">
+            http_code : {{ excuse.http_code }} / message : {{ excuse.message }}
+        </p>
+    </div>
+</div>
+</div>
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    window.onload = () => {
+        const btn = document.getElementById("btn");
+
+        btn.addEventListener("click", () => {
+            window.location.href = "{{ path('app_home_page') }}";
+        })
+    }
+</script>
+{% endblock %}
+
+{% endblock %}
